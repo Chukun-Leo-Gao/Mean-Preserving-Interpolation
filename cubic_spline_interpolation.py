@@ -1,6 +1,6 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.interpolate import CubicSpline
+import matplotlib.pyplot as plt
 
 # Example: 6 hours of 15-minute average flows (veh/min), 24 data points in total 
 q_15 = np.array([9, 11, 12, 14, 18, 26, 35, 44, 55, 65, 62, 57, 56, 54, 52, 46, 46, 46, 48, 44, 43, 43, 44, 41])
@@ -20,10 +20,12 @@ t_1 = np.arange(0, t_15[-1] + 2, 1)                 # 1-min resolution
 # 3. Interpolation of cumulative vehicle count
 cs = CubicSpline(t_15, cum_counts) # Cubic spline interpolation
 q_1_cum = cs(t_1)
+
+# 4. Differentiating against interpolated cumulative vehicle counts to obtain per-minute flows
 q_1 = np.diff(q_1_cum)
-diff_mean = np.array([None]*len(q_15))
 
 # 4. Calculate difference between 15-minute average of interpolated data and original data 
+diff_mean = np.array([None]*len(q_15))
 for i in range(len(q_15)):
     diff_mean[i] = 100-np.average(q_1[i*15:(i+1)*15])/q_15[i]*100
 print(np.average(np.abs(diff_mean))) # Calculating and displaying MAPE, should be 0 or very close to 0
