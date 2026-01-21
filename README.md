@@ -50,7 +50,7 @@ for i in range(len(q_15)):
 print(np.average(np.abs(diff_mean))) # Calculating and displaying MAPE, should be 0 or very close to 0
 ```
 
-Plotting
+Plotting the original and interpolated data.
 ```
 plt.figure(figsize=(10, 6))
 plt.plot(q_1, label="1-min flow (conserved)", linewidth=2)
