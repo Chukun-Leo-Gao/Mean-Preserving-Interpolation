@@ -5,8 +5,8 @@ This project implements a mean-preserving interpolation method for time-series d
 Packages needed: numpy, scipy, matplotlib (optional, for plotting).
 ```
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.interpolate import CubicSpline
+import matplotlib.pyplot as plt
 ```
 
 Suppose we have 6 hours of 15-minute average traffic flows.
